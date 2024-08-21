@@ -1,0 +1,129 @@
+/* src/app/available-agent/available-agent.component.css */
+
+/* Introduction Section */
+.intro-section {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .intro-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .intro-text {
+    font-size: 1.125rem;
+    color: #6c757d;
+    line-height: 1.5;
+  }
+  
+  /* Agent Cards Container */
+  .agent-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Space between cards */
+    margin: 0 -0.5rem; /* Adjust container margin to align cards properly */
+  }
+  
+  /* Agent Card Styling */
+  .agent-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px; /* Adjust the card width */
+    margin: 0.5rem; /* Add margin around each card */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  .card-img-left {
+    width: 150px; /* Fixed width for the image */
+    height: 150px; /* Fixed height for the image */
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 15px;
+    flex: 1;
+    background-color: #fff; /* Ensure background is white */
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .card-subtitle {
+    font-size: 0.875rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-text {
+    font-size: 0.875rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+  /* Button Styling */
+  
+  .button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 4px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: black;
+  }
+  .button:hover{
+    background-color: rgb(8, 8, 52);
+  }
+
+  /* Responsive Styling */
+  @media (max-width: 1024px) {
+    .agent-card {
+      max-width: 300px; /* Smaller width for tablets */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .agent-card {
+      max-width: 100%; /* Full width on smaller screens */
+      flex-direction: column; /* Stack image and text vertically */
+    }
+  
+    .card-img-left {
+      width: 100%; /* Full width image on small screens */
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .intro-title {
+      font-size: 1.5rem;
+    }
+  
+    .intro-text {
+      font-size: 1rem;
+    }
+  
+    .agent-card {
+      max-width: 100%; /* Full width on very small screens */
+    }
+  }
+  

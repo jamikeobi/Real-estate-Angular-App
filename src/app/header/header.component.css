@@ -1,0 +1,76 @@
+header{
+    height: 200px;
+}
+
+/* Styling to Icons Profile dropdown*/
+a{
+    text-decoration: none;
+}
+/* Basic styling for the profile dropdown */
+.header-top {
+    position: relative; /* or absolute */
+    z-index: 10; /* Lower z-index for top bar */
+    margin-bottom: 10px; 
+}
+
+.header-bottom {
+    position: relative; /* or absolute */
+    z-index: 5; /* Higher z-index for navbar */
+    margin-top: 20px; /* Adds space between top bar and navbar */
+}
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.header-bottom-actions-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure the dropdown is on top */
+    min-width: 200px; /* Adjusted the minimum width */
+    width: auto; /* Allows the dropdown to auto-size based on content */
+    padding: 5px 0; /* Added padding for better spacing */
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    display: flex; /* Flexbox to align icon and text */
+    align-items: center;
+    padding: 10px 20px; /* Adjusted padding */
+    color: #333;
+    text-decoration: none;
+    font-size: 14px; /* Adjust font size if needed */
+}
+
+.dropdown-item i {
+    margin-right: 10px; /* Spacing between icon and text */
+}
+
+.dropdown-item:hover {
+    background: #f0f0f0;
+}
+
+.underline {
+    text-decoration: underline;
+    border-top: 3px solid rgb(4, 4, 52);
+}
+

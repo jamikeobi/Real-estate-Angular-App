@@ -1,0 +1,19 @@
+<div class="inbox-container">
+  <div class="inbox-intro">
+    <h2>Welcome to Your Inbox</h2>
+    <p>
+      This is where you can view and manage all your messages related to your
+      real estate activities.
+    </p>
+  </div>
+  <div class="inbox-list">
+    <div class="message-card" *ngFor="let message of messages">
+      <div class="card-header">
+        <h3>[Subject]</h3>
+        <p>[Sender]</p>
+      </div>
+      <div class="card-body">[Message preview]</div>
+      <div class="card-footer">[Date]</div>
+    </div>
+  </div>
+</div>

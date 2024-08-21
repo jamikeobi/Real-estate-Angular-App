@@ -1,0 +1,34 @@
+<div class="page-content">
+    <div class="form-v2-content">
+        <div class="form-left">
+            <img src="../../assets/images/blog-1.png" alt="form">
+            <div class="text-1">
+                <p>Find Your Dream Home<span>Join the Search</span></p>
+            </div>
+        </div>
+        <form class="form-detail" [formGroup]="loginForm" (ngSubmit)="onSubmitLogInForm()">
+            <h2>Log In Form</h2>
+            <div class="form-row">
+                <label for="email">Your Email:</label>
+                <input type="text" id="email" class="input-text" formControlName="email">
+                <div *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" class="text-danger">
+                    <small *ngIf="loginForm.get('email').errors?.['required']">Email is required.</small>
+                    <small *ngIf="loginForm.get('email').errors?.['pattern']">Invalid email format.</small>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="input-text" formControlName="password">
+                <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" class="text-danger">
+                    <small *ngIf="loginForm.get('password').errors?.['required']">Password is required.</small>
+                </div>
+            </div>
+            <div class="form-row-last">
+                <input type="submit" value="Log In" class="register" [disabled]="loginForm.invalid">
+            </div>
+            <div class="already-member">
+                <p>Don't have an account? <a href="/register" class="login-link">Register here</a></p>
+            </div>
+        </form>
+    </div>
+</div>

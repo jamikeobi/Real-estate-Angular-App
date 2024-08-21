@@ -1,0 +1,29 @@
+<div class="profile-settings-container">
+    <div class="profile-header">
+      <h2>Profile Settings</h2>
+    </div>
+  
+    <div class="profile-info">
+      <div class="profile-image">
+        <img [src]="userProfile.imageUrl || 'assets/default-profile.png'" alt="Profile Image" />
+        <button mat-button (click)="openUploadImage()">Change Image</button>
+      </div>
+      
+      <div class="profile-details">
+        <div class="profile-detail">
+          <label for="username">Username:</label>
+          <input id="username" type="text" [(ngModel)]="userProfile.username" disabled />
+        </div>
+        
+        <div class="profile-detail">
+          <label for="email">Email:</label>
+          <input id="email" type="email" [(ngModel)]="userProfile.email" disabled />
+        </div>
+  
+        <div class="profile-detail">
+          <button mat-button (click)="openChangePassword()">Change Password</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
