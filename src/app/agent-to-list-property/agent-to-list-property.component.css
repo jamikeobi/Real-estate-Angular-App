@@ -1,0 +1,246 @@
+/* Container for the property list */
+.property-list-container {
+    padding: 20px;
+    background: #f8f9fa;
+  }
+  
+  /* Button to show the add property form */
+  .property-list-container button {
+    background:  rgb(4, 4, 69);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .property-list-container button:hover {
+    background:  hsl(200, 69%, 14%);
+  }
+  
+  /* List of properties */
+  .property-list-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .property-list-container li {
+    margin-bottom: 20px;
+  }
+  
+  /* Property card styling */
+  .property-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Card banner for images and status badge */
+  .card-banner {
+    position: relative;
+  }
+  
+  .card-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background:  rgb(4, 4, 69);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .banner-actions {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 20px);
+  }
+  
+  .banner-actions-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .banner-actions-btn ion-icon {
+    margin-right: 5px;
+  }
+  
+  /* Card content section */
+  .card-content {
+    padding: 15px;
+  }
+  
+  .card-price {
+    font-size: 22px;
+    font-weight: bold;
+    color:  rgb(4, 4, 69);
+    margin-bottom: 10px;
+  }
+  
+  .card-title a {
+    color:  rgb(4, 4, 69);
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .card-title a:hover {
+    text-decoration: underline;
+    color:  hsl(200, 69%, 14%);
+  }
+  
+  .card-text {
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  /* Card footer with action buttons */
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: #f8f9fa;
+  }
+  
+  .card-footer button {
+    background:  rgb(4, 4, 69);
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .card-footer button:hover {
+    background: hsl(200, 69%, 14%);
+  }
+
+  
+  /* Container for the add/edit property form */
+.add-edit-property-container {
+    padding: 20px;
+    background: #f8f9fa;
+  }
+  
+  .add-edit-property-container form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .add-edit-property-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Form field styling */
+  .add-edit-property-container .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .add-edit-property-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .add-edit-property-container .form-group input,
+  .add-edit-property-container .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .add-edit-property-container .form-group input[type="file"] {
+    padding: 0;
+  }
+  
+  .add-edit-property-container .form-group textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .add-edit-property-container button[type="submit"] {
+    background:  rgb(4, 4, 69);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-edit-property-container button[type="submit"]:hover {
+    background: hsl(200, 69%, 14%);
+  }
+  
+  .popup-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  .popup-message p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .popup-message button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .popup-message button:hover {
+    background-color: #0056b3;
+  }
+  

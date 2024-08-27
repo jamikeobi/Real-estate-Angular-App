@@ -33,6 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ModalComponent } from './profile-setting/modal/modal.component';
+import { AgentToListPropertyComponent } from './agent-to-list-property/agent-to-list-property.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { ModalComponent } from './profile-setting/modal/modal.component';
     ProfileSettingComponent,
     ChangePasswordComponent,
     UploadImageComponent,
-    ModalComponent
+    ModalComponent,
+    AgentToListPropertyComponent
   ],
   imports: [
     BrowserModule,

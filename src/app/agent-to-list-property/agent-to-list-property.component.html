@@ -1,0 +1,67 @@
+<div class="property-list-container">
+    <button (click)="showAddPropertyForm()" *ngIf="showButton">Add Property</button>
+    <ul>
+      <li *ngFor="let property of properties">
+        <div class="property-card">
+          <figure class="card-banner">
+            <a [routerLink]="['/properties', property.id]">
+              <img [src]="property.images[0]" alt="Property Image" class="w-100">
+            </a>
+            <div class="card-badge">{{ property.status }}</div>
+            <div class="banner-actions">
+              <button class="banner-actions-btn">
+                <ion-icon name="location"></ion-icon>
+                <address>{{ property.location }}</address>
+              </button>
+              <button class="banner-actions-btn">
+                <ion-icon name="camera"></ion-icon>
+                <span>{{ property.images.length }}</span>
+              </button>
+            </div>
+          </figure>
+          <div class="card-content">
+            <div class="card-price">
+              <strong>{{ property.price }}</strong>/Month
+            </div>
+            <h3 class="h3 card-title">
+              <a [routerLink]="['/properties', property.id]">{{ property.title }}</a>
+            </h3>
+            <p class="card-text">{{ property.description }}</p>
+          </div>
+          <div class="card-footer">
+            <button (click)="editProperty(property.id)">Edit</button>
+            <button (click)="deleteProperty(property.id)">Delete</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Add/Edit Property Form -->
+  <div *ngIf="showForm" class="add-edit-property-container">
+    <form (ngSubmit)="onPropertySubmit()" #propertyForm="ngForm">
+      <h2>{{ isEditMode ? 'Edit Property' : 'Add New Property' }}</h2>
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input id="title" name="title" [(ngModel)]="property.title" required>
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input id="location" name="location" [(ngModel)]="property.location" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input id="price" name="price" [(ngModel)]="property.price" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="property.description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="images">Images:</label>
+        <input id="images" name="images" type="file" (change)="onImagesChange($event)" multiple>
+      </div>
+      <button type="submit">{{ isEditMode ? 'Update Property' : 'Save Property' }}</button>
+    </form>
+  </div>
+  

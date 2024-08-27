@@ -16,6 +16,7 @@ import { RequestComponent } from './request/request.component';
 import { AvailableAgentsComponent } from './available-agents/available-agents.component';
 import { SearchHistoryComponent } from './search-history/search-history.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { AgentToListPropertyComponent } from './agent-to-list-property/agent-to-list-property.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'agents', component: AvailableAgentsComponent},
   {path: 'searchHistory', component: SearchHistoryComponent},
   {path: 'profile-setting', component: ProfileSettingComponent},
+  {path: 'AgentToListProperty', component: AgentToListPropertyComponent},
   {path: '', redirectTo: '/properties', pathMatch: 'full'}
 ];
 

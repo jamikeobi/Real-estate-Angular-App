@@ -1,1 +1,78 @@
-<p>property-details works!</p>
+<section class="property-details">
+    <div class="container">
+      <!-- Image Slider -->
+      <div class="image-slider">
+        <div class="slides">
+          <img [src]="currentImage" alt="Property Image">
+        </div>
+        <button (click)="prevSlide()" class="slider-btn prev">&#10094;</button>
+        <button (click)="nextSlide()" class="slider-btn next">&#10095;</button>
+      </div>
+  
+      <!-- Property Information -->
+      <div class="property-info">
+        <h1 class="property-title">{{ property.title }}</h1>
+        <p class="property-location">{{ property.location }}</p>
+        <div class="property-price">{{ property.price }}</div>
+        <p class="property-description">{{ property.description }}</p>
+        <ul class="property-details-list">
+          <li>{{ property.bedrooms }} <ion-icon name="bed-outline"></ion-icon> Bedrooms</li>
+          <li>{{ property.toilets }} <ion-icon name="water-outline"></ion-icon> Toilets</li>
+          <li>{{ property.parkingSpace }} <ion-icon name="car-outline"></ion-icon> Parking Space</li>
+          <li>{{ property.bathrooms }} <ion-icon name="man-outline"></ion-icon> Bathrooms</li>
+          <li>{{ property.size }} <ion-icon name="square-outline"></ion-icon> Square Ft</li>
+        </ul>
+  
+        <!-- Toggle Section -->
+        <div class="toggle-buttons">
+          <button (click)="showDetails()" class="toggle-btn"><i class="fa fa-newspaper-o"></i> Details</button>
+          <button (click)="showMap()" class="toggle-btn"><i class="fa fa-map"></i> Map</button>
+        </div>
+  
+        <div class="toggle-content">
+          <div *ngIf="showDetailView">
+            <div class="details-section">
+              <h2>Property Description</h2>
+              <p>{{ property.fullDescription }}</p>
+              <h2>Property Details</h2>
+              <table>
+                <tr>
+                  <th>Marketed By</th>
+                  <td>{{ property.marketedBy }}</td>
+                </tr>
+                <tr>
+                  <th>Property Type</th>
+                  <td>{{ property.type }}</td>
+                </tr>
+                <tr>
+                  <th>Property Status</th>
+                  <td>{{ property.status }}</td>
+                </tr>
+                <tr>
+                  <th>Property Size</th>
+                  <td>{{ property.size }}</td>
+                </tr>
+                <tr>
+                  <th>Property Age</th>
+                  <td>{{ property.age }}</td>
+                </tr>
+                <tr>
+                  <th>Property Condition</th>
+                  <td>{{ property.condition }}</td>
+                </tr>
+              </table>
+              <div>
+                <i class="fa fa-list"></i><a href="#">View all properties from this agent</a>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!showDetailView">
+            <div class="map-section">
+              <!-- Map Here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

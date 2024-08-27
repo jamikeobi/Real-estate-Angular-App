@@ -44,35 +44,37 @@ export class AuthService {
   }
 
   // Store user data after successful registration
-  storeUserData(userDetails: UserDetails, token: string): Observable<any> {
-    const url = `${this.dataBaseUrl}/${userDetails.id}.json?auth=${token}`;
-    return this.http.post(url, userDetails);
-  }
+storeUserData(userDetails: UserDetails, token: string): Observable<any> {
+  const url = `${this.dataBaseUrl}/${userDetails.id}.json?auth=${token}`;
+  return this.http.post(url, userDetails);
+}
 
-  // Log in function
-  logIn(email: string, password: string): Observable<UserDetails> {
-    const data = { email: email, password: password, returnSecureToken: true };
-    return this.http
-      .post<AuthResponse>(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`,
-        data
-      )
-      .pipe(
-        switchMap((authResponse) => {
-          return this.getUserData(+authResponse.localId, authResponse.idToken);
-        }),
-        tap((userDetails) => {
-          this.user.next(userDetails); // Notify subscribers about user details
-        }),
-        catchError(this.handleError)
-      );
-  }
 
-  // Fetch user data from Firebase
-  getUserData(userId: number, token: string): Observable<UserDetails> {
-    const url = `${this.dataBaseUrl}/${userId}.json?auth=${token}`;
-    return this.http.get<UserDetails>(url);
-  }
+ // Log in function
+logIn(email: string, password: string): Observable<UserDetails> {
+  const data = { email: email, password: password, returnSecureToken: true };
+  return this.http
+    .post<AuthResponse>(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`,
+      data
+    )
+    .pipe(
+      switchMap((authResponse) => {
+        return this.getUserData(+authResponse.localId, authResponse.idToken);
+      }),
+      tap((userDetails) => {
+        this.user.next(userDetails); // Notify subscribers about user details
+      }),
+      catchError(this.handleError)
+    );
+}
+
+
+// Fetch user data from Firebase
+getUserData(userId: number, token: string): Observable<UserDetails> {
+  const url = `${this.dataBaseUrl}/${userId}.json?auth=${token}`;
+  return this.http.get<UserDetails>(url);
+}
 
   private handleError(err) {
     console.log(err);
