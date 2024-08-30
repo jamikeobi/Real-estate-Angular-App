@@ -31,7 +31,7 @@ export class RegisterComponent{
     if (this.registerForm.valid) {
       const formValue = this.registerForm.value;
       const userDetails = new UserDetails(
-        Date.now(),
+        Date.now().toString(),
         formValue.username,
         formValue.email,
         formValue.password,

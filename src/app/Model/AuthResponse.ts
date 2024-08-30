@@ -5,4 +5,7 @@ export interface AuthResponse{
     expiresIn: string;
     localId: string;
     registered?: boolean;
+    username?: string;
+    role?: string;
+    name: string;
 }

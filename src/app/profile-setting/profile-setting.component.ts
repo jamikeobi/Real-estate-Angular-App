@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AgentService } from '../Services/agent.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Profile } from '../Model/profile';
 
 @Component({
   selector: 'app-profile-setting',
@@ -8,48 +9,54 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./profile-setting.component.css']
 })
 export class ProfileSettingComponent implements OnInit {
-  profile: any = {
-    name: '',
-    company: '',
-    streetAddress: '',
-    locality: '',
-    state: '',
-    country: '',
-    phoneNumber: '',
-    whatsappContact: '',
-    image: '',
-    description: ''
-  };
-  agentId: string = ''; // Initialize with the logged-in agent's ID or fetch it dynamically
+  profile: Profile = new Profile();
+  agentId: string;
+  isEditing: boolean = false; // To toggle between view and edit modes
 
-  constructor(private agentService: AgentService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private agentService: AgentService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.agentId = this.route.snapshot.paramMap.get('id') || '';
-    if (this.agentId) {
+    // Get the agentId from route parameters
+    this.route.params.subscribe(params => {
+      this.agentId = params['id']; // Adjust according to your route parameter name
       this.loadProfile();
-    }
-  }
-
-  loadProfile(): void {
-    this.agentService.getProfile(this.agentId).subscribe(data => {
-      if (data) {
-        this.profile = data;
-      }
     });
   }
 
+  loadProfile(): void {
+    this.agentService.getProfile(this.agentId).subscribe(
+      (data: Profile) => {
+        this.profile = data || new Profile(); // Handle case where profile might not exist
+        this.isEditing = false; // Set to false to display profile details
+      },
+      error => {
+        console.error('Error loading profile', error);
+      }
+    );
+  }
+
   saveProfile(): void {
-    if (this.agentId) {
-      this.agentService.updateProfile(this.agentId, this.profile).subscribe(() => {
-        this.router.navigate(['/']); // Redirect to the home page or another appropriate page after saving
-      });
+    if (this.profile.name) {
+      this.agentService.updateProfile(this.agentId, this.profile).subscribe(
+        (data: Profile) => {
+          this.profile = data; // Update the profile object with the response data
+          this.isEditing = false; // Switch to view mode
+          console.log('Profile updated:', data);
+        },
+        error => {
+          console.error('Error updating profile', error);
+        }
+      );
     } else {
-      this.agentId = this.generateUniqueId();
-      this.agentService.saveProfile(this.agentId, this.profile).subscribe(() => {
-        this.router.navigate(['/']);
-      });
+      console.error('Profile is invalid');
     }
+  }
+
+  editProfile(): void {
+    this.isEditing = true; // Switch to edit mode
   }
 
   onImageChange(event: any): void {
@@ -61,9 +68,5 @@ export class ProfileSettingComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     }
-  }
-
-  generateUniqueId(): string {
-    return 'agent_' + Math.random().toString(36).substr(2, 9);
   }
 }

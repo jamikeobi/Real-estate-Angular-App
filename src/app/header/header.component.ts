@@ -1,6 +1,7 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { UserDetails } from '../Model/userdetails';
 import { AuthService } from '../Services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -17,15 +18,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-    this.authService.user.subscribe(userDetails => {
-      this.user = userDetails;
-      this.username = userDetails ? userDetails.username : '';
-      this.isLoggedIn = !!userDetails;
-      if (userDetails) {
-        this.isBuyer = userDetails.role === 'buyer';
-        this.isAgent = userDetails.role === 'agent';
-      }
+  ngOnInit(): void {
+    this.authService.user.subscribe(user => {
+      this.user = user;
+      this.isLoggedIn = !!user;
+      this.isBuyer = this.authService.isBuyer();
+      this.isAgent = this.authService.isAgent();
     });
   }
 
@@ -40,4 +38,12 @@ export class HeaderComponent implements OnInit {
       this.isDropDownOpen = false;
     }
   }
+
+  logout() {
+    // Implement logout logic
+  }
+
+  deleteAccount() {
+    // Implement delete account logic
+  } 
 }

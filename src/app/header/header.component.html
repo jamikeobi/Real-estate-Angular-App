@@ -47,6 +47,8 @@
           </li>
         </ul>
         <button class="header-top-btn">Welcome {{ username }}!</button>
+        <button class="header-top-btn" *ngIf="isBuyer">Welcome {{ username }}!</button>
+        <button class="header-top-btn" *ngIf="isAgent">Welcome {{ username }}!</button>
       </div>
     </div>
   </div>
@@ -105,53 +107,53 @@
           <span>Search</span>
         </button>
 
-        <!-- Profile Dropdown -->
-        <div class="profile-dropdown">
-          <button
-            class="header-bottom-actions-btn"
-            aria-label="Profile"
-            (click)="toggleDropdown()"
-          >
-            <ion-icon name="person-outline"></ion-icon>
-            <span>Profile</span>
-            <ion-icon name="chevron-down-outline"></ion-icon>
-          </button>
+       <!-- Profile Dropdown -->
+<div class="profile-dropdown">
+  <button
+    class="header-bottom-actions-btn"
+    aria-label="Profile"
+    (click)="toggleDropdown()"
+  >
+    <ion-icon name="person-outline"></ion-icon>
+    <span>Profile</span>
+    <ion-icon name="chevron-down-outline"></ion-icon>
+  </button>
 
-          <div class="dropdown-menu" [class.show]="isDropDownOpen">
-            <a href="/register" class="dropdown-item">
-              <i class="fas fa-user-plus"></i> Register
-            </a>
+  <div class="dropdown-menu" [class.show]="isDropDownOpen">
+    <!-- Conditionally render based on user login status -->
+    <a *ngIf="!isLoggedIn" href="/register" class="dropdown-item">
+      <i class="fas fa-user-plus"></i> Register
+    </a>
+    <!-- <a *ngIf="!isLoggedIn" href="/login" class="dropdown-item">
+      <i class="fa-solid fa-right-to-bracket"></i> Login
+    </a> -->
 
-            <!-- <a href="/login" class="dropdown-item">
-              <i class="fa-solid fa-right-to-bracket"></i> Login
-            </a> -->
+    <a *ngIf="isLoggedIn && isBuyer" href="/buyer-profile" class="dropdown-item">
+      <i class="fa-solid fa-user"></i> My Buyer Account
+    </a>
+    <a  href="/agent-dashboard" class="dropdown-item">
+      <i class="fa-solid fa-user"></i> My Agent Account
+    </a>
 
-            <a href="/buyer-profile" class="dropdown-item">
-              <i class="fa-solid fa-user"></i> My Buyer Account
-            </a>
-            <a href="/agent-dashboard" class="dropdown-item">
-              <i class="fa-solid fa-user"></i> My Agent Account <h3></h3>
-            </a>
+    <a *ngIf="isLoggedIn" href="/favorite" class="dropdown-item">
+      <i class="fas fa-heart"></i> Favorite
+    </a>
 
-            <a href="/favorite" class="dropdown-item">
-              <i class="fas fa-heart"></i> Favorite
-            </a>
+    <a *ngIf="isLoggedIn" href="/inbox" class="dropdown-item">
+      <i class="fas fa-message"></i> Inbox
+    </a>
+    <br>
+    <div class="underline"></div> <br>
+    <a *ngIf="isLoggedIn" class="dropdown-item" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
 
-            <a href="/inbox" class="dropdown-item">
-              <i class="fas fa-message"></i> Inbox
-            </a>
-            <br>
-            <div class="underline"></div> <br>
-            <a class="dropdown-item">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
+    <a *ngIf="isLoggedIn" class="dropdown-item" (click)="deleteAccount()">
+      <i class="fas fa-trash"></i> Delete Account
+    </a>
+  </div>
+</div>
 
-            <a class="dropdown-item">
-              <i class="fas fa-trash"></i> Delete Account
-            </a>
-
-          </div>
-        </div>
 
         <!-- <button class="header-bottom-actions-btn" aria-label="Cart">
           <ion-icon name="cart-outline"></ion-icon>

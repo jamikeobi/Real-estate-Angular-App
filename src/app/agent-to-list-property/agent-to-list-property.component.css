@@ -30,10 +30,12 @@
   
   .property-list-container li {
     margin-bottom: 20px;
+    display: flex;
   }
   
   /* Property card styling */
   .property-card {
+    width: 400px;
     display: flex;
     flex-direction: column;
     background: #fff;
@@ -143,104 +145,105 @@
   .card-footer button:hover {
     background: hsl(200, 69%, 14%);
   }
+/* Modal Overlay */
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto; /* Add this line to handle overflow */
+}
 
-  
-  /* Container for the add/edit property form */
-.add-edit-property-container {
-    padding: 20px;
-    background: #f8f9fa;
-  }
-  
-  .add-edit-property-container form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .add-edit-property-container h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Form field styling */
-  .add-edit-property-container .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .add-edit-property-container .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .add-edit-property-container .form-group input,
-  .add-edit-property-container .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .add-edit-property-container .form-group input[type="file"] {
-    padding: 0;
-  }
-  
-  .add-edit-property-container .form-group textarea {
-    resize: vertical;
-    height: 100px;
-  }
-  
-  .add-edit-property-container button[type="submit"] {
-    background:  rgb(4, 4, 69);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .add-edit-property-container button[type="submit"]:hover {
-    background: hsl(200, 69%, 14%);
-  }
-  
-  .popup-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 1rem 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    text-align: center;
-  }
-  
-  .popup-message p {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-    color: #333;
-  }
-  
-  .popup-message button {
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .popup-message button:hover {
-    background-color: #0056b3;
-  }
-  
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-height: 90vh; /* Ensures the modal doesn’t exceed the viewport */
+  overflow-y: auto; /* Allows scrolling within the modal if content overflows */
+}
+
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button[type="submit"] {
+  background-color: rgb(4, 4, 69);
+  color: white;
+  border: none;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: hsl(200, 69%, 14%);
+}
+
+button[type="button"] {
+  background-color: #ccc;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+button[type="button"]:hover {
+  background-color: #999;
+}
+
+.error{
+  color: red;
+}
