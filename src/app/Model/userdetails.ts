@@ -7,5 +7,6 @@ export class UserDetails {
         public role: string,
         public date: Date = new Date(),
         public name: string,
+        public token?: string
     ) {}
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Real-Estate-Angular-App';
-  ngOnInit(){
-    
+  isLoading: Observable<boolean>;
+
+  constructor(private loadingService: AuthService) {
+    this.isLoading = this.loadingService.loading$;
   }
 }

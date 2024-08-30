@@ -15,7 +15,7 @@
         <li>
           <a href="#" class="header-top-link">
             <ion-icon name="location-outline"></ion-icon>
-            <address>15/A, Nest Tower, NYC</address>
+            <address>10, Akande Street, Idorawa, Ogun State, Nigeria</address>
           </a>
         </li>
       </ul>
@@ -128,10 +128,10 @@
       <i class="fa-solid fa-right-to-bracket"></i> Login
     </a> -->
 
-    <a *ngIf="isLoggedIn && isBuyer" href="/buyer-profile" class="dropdown-item">
+    <a *ngIf="isLoggedIn" href="/buyer-profile" class="dropdown-item">
       <i class="fa-solid fa-user"></i> My Buyer Account
     </a>
-    <a  href="/agent-dashboard" class="dropdown-item">
+    <a  *ngIf="isLoggedIn" href="/agent-dashboard" class="dropdown-item">
       <i class="fa-solid fa-user"></i> My Agent Account
     </a>
 

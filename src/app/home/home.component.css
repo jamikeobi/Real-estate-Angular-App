@@ -51,3 +51,114 @@
   a{
     text-decoration: none;
   }
+  .property-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 20px;
+  }
+  
+  .property-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+/* Styling for the search section */
+.search-section {
+    position: relative; /* Ensure the section can contain positioned pseudo-elements */
+    padding: 40px 0;
+    overflow: hidden; /* Ensure content does not overflow */
+    color: #fff; /* Text color for contrast */
+  }
+  
+  /* Blurred Background */
+  .search-section::before {
+    content: ''; /* Empty content for pseudo-element */
+    position: absolute; /* Position it absolutely within the section */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/images/back2.jpg'); /* Add your background image */
+    background-size: cover; /* Ensure the image covers the entire section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    filter: blur(2px); /* Apply blur effect */
+    z-index: -1; /* Place the pseudo-element behind the content */
+  }
+  
+  /* Container for content */
+  .container {
+    position: relative; /* Position container content relative to the section */
+    z-index: 1; /* Ensure content is above the blurred background */
+  }
+  
+  /* Styling for header and description */
+  .search-header {
+    text-align: center; /* Center align text */
+    margin-bottom: 20px; /* Space below the header */
+  }
+  
+  .search-title {
+    font-size: 2.5rem; /* Adjust font size for better visibility */
+    font-weight: bold; /* Bold font weight */
+    margin-bottom: 10px; /* Space below the title */
+    color: rgb(1, 1, 46);
+  }
+  
+  .search-description {
+    font-size: 1.2rem; /* Adjust font size for readability */
+    max-width: 800px; /* Limit width for better readability */
+    margin: 0 auto; /* Center align description */
+    line-height: 1.5; /* Increase line height for better readability */
+    color: rgb(1, 1, 46);
+
+  }
+  a{
+    text-decoration: none;
+  }
+  
+  /* Responsive design for different screen sizes */
+  @media (max-width: 1024px) {
+    .search-title {
+      font-size: 2rem; /* Adjust font size for tablets */
+    }
+  
+    .search-description {
+      font-size: 1rem; /* Adjust font size for tablets */
+      max-width: 90%; /* Reduce max-width for smaller screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .search-title {
+      font-size: 1.8rem; /* Adjust font size for smaller tablets and larger phones */
+    }
+  
+    .search-description {
+      font-size: 0.9rem; /* Adjust font size for smaller tablets and larger phones */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .search-title {
+      font-size: 1.5rem; /* Adjust font size for phones */
+    }
+  
+    .search-description {
+      font-size: 0.8rem; /* Adjust font size for phones */
+      max-width: 100%; /* Full width for phones */
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .search-title {
+      font-size: 1.4rem; /* Further adjust font size for very small screens */
+    }
+  
+    .search-description {
+      font-size: 0.75rem; /* Further adjust font size for very small screens */
+    }
+  }
+  

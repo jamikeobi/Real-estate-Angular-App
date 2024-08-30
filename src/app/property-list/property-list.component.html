@@ -31,7 +31,7 @@
       <li *ngFor="let property of properties">
         <div class="property-card">
           <figure class="card-banner">
-            <a [routerLink]="['/properties', property.id]">
+            <a [routerLink]="['/propertiesDetails', property.id]">
               <img [src]="property?.images?.[0]" alt="Property Image" class="w-100">
             </a>
             <div class="card-badge green">{{property?.status}}</div>
@@ -54,7 +54,7 @@
               <strong>{{ property?.status === 'rent' ? property?.price + '/Year' : property?.price }}</strong>
             </div>
             <h3 class="h3 card-title">
-              <a href="#">{{property?.title}}</a>
+              <a href="/propertiesDetails">{{property?.title}}</a>
             </h3>
             <p class="card-text">
               {{property?.description}}
@@ -114,21 +114,4 @@
   <!-- 
     - #PROPERTY ENDS
   -->
-  <div *ngFor="let property of properties">
-    <h2>{{ property.title }}</h2>
-    <p>{{ property.description }}</p>
-    
-    <div *ngIf="property.agentId">
-      <h3>Agent Details:</h3>
-      <div *ngIf="getProfile(property.agentId) as profile; else loading">
-        <p><strong>Name:</strong> {{ profile.name }}</p>
-        <p><strong>Company:</strong> {{ profile.company }}</p>
-        <p><strong>Contact:</strong> {{ profile.phoneNumber }}</p>
-        <!-- Add more fields as necessary -->
-      </div>
-      <ng-template #loading>
-        <p>Loading agent details...</p>
-      </ng-template>
-    </div>
-  </div>
   

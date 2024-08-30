@@ -5,7 +5,11 @@
       <div class="property-card">
         <figure class="card-banner">
           <a [routerLink]="['/properties', property.id]">
-            <img [src]="property.images[0]" alt="Property Image" class="w-100">
+            <img
+              [src]="property.images[0]"
+              alt="Property Image"
+              class="w-100"
+            />
           </a>
           <div class="card-badge">{{ property.status }}</div>
           <div class="banner-actions">
@@ -21,16 +25,28 @@
         </figure>
         <div class="card-content">
           <div class="card-price">
-            <strong>{{ property.status === 'rent' ? property.price + '/Year' : property.price }}</strong>
+            <strong>{{
+              property.status === "rent"
+                ? property.price + "/Year"
+                : property.price
+            }}</strong>
           </div>
           <h3 class="h3 card-title">
-            <a [routerLink]="['/properties', property.id]">{{ property.title }}</a>
+            <a [routerLink]="['/properties', property.id]">{{
+              property.title
+            }}</a>
           </h3>
           <div class="card-price">
-          <p class="card-text">{{ property.description }}</p>
-          <p class="card-text">{{property.bedrooms}} bedrooms</p>
-          <p class="card-text">{{property.bathrooms}} bathrooms</p>
-          <p class="card-text">{{property.toilets}} toilets</p>
+            <p class="card-text" style="color: black;">{{ property.description }}</p>
+            <p class="card-text">
+              <i class="fa fa-bed"></i> {{ property.bedrooms }} bedrooms
+            </p>
+            <p class="card-text">
+              <i class="fa fa-person"></i> {{ property.bathrooms }} bathrooms
+            </p>
+            <p class="card-text">
+              <i class="fa fa-chair"></i> {{ property.toilets }} toilets
+            </p>
           </div>
         </div>
         <div class="card-footer">
@@ -42,63 +58,107 @@
   </ul>
 </div>
 
-<div class="loader" id="globalLoader" style="display: none;"></div>
+<div class="loader" id="globalLoader" style="display: none"></div>
 
 <!-- Add/Edit Property Form -->
 <div *ngIf="showForm" class="modal-overlay" (click)="closeForm()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <form (ngSubmit)="onPropertySubmit()" #propertyForm="ngForm">
-      <h2>{{ isEditMode ? 'Edit Property' : 'Add New Property' }}</h2>
+      <h2>{{ isEditMode ? "Edit Property" : "Add New Property" }}</h2>
 
       <div class="form-group">
         <label for="title">Title:</label>
-        <input id="title" name="title" [(ngModel)]="property.title" required>
+        <input id="title" name="title" [(ngModel)]="property.title" required />
       </div>
 
       <div class="form-group">
         <label for="location">Location:</label>
-        <input id="location" name="location" [(ngModel)]="property.location" required>
+        <input
+          id="location"
+          name="location"
+          [(ngModel)]="property.location"
+          required
+        />
       </div>
 
       <div class="form-group">
         <label for="price">Price:</label>
-        <input id="price" name="price" [(ngModel)]="property.price" required>
+        <input id="price" name="price" [(ngModel)]="property.price" required />
       </div>
 
       <div class="form-group">
         <label for="description">Description:</label>
-        <textarea id="description" name="description" [(ngModel)]="property.description"></textarea>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="property.description"
+        ></textarea>
       </div>
 
       <!-- New Inputs for Additional Details -->
       <div class="form-group">
         <label for="bedrooms">Number of Bedrooms:</label>
-        <input id="bedrooms" name="bedrooms" type="number" [(ngModel)]="property.bedrooms" required>
+        <input
+          id="bedrooms"
+          name="bedrooms"
+          type="number"
+          [(ngModel)]="property.bedrooms"
+          required
+        />
       </div>
 
       <div class="form-group">
         <label for="toilets">Number of Toilets:</label>
-        <input id="toilets" name="toilets" type="number" [(ngModel)]="property.toilets" required>
+        <input
+          id="toilets"
+          name="toilets"
+          type="number"
+          [(ngModel)]="property.toilets"
+          required
+        />
       </div>
 
       <div class="form-group">
         <label for="bathrooms">Number of Bathrooms:</label>
-        <input id="bathrooms" name="bathrooms" type="number" [(ngModel)]="property.bathrooms" required>
+        <input
+          id="bathrooms"
+          name="bathrooms"
+          type="number"
+          [(ngModel)]="property.bathrooms"
+          required
+        />
       </div>
 
       <div class="form-group">
         <label for="parking">Parking Spaces:</label>
-        <input id="parking" name="parking" type="number" [(ngModel)]="property.parking" required>
+        <input
+          id="parking"
+          name="parking"
+          type="number"
+          [(ngModel)]="property.parking"
+          required
+        />
       </div>
 
       <div class="form-group">
         <label for="squareMeters">Square Meters:</label>
-        <input id="squareMeters" name="squareMeters" type="number" [(ngModel)]="property.squareMeters" required>
+        <input
+          id="squareMeters"
+          name="squareMeters"
+          type="number"
+          [(ngModel)]="property.squareMeters"
+          required
+        />
       </div>
 
       <div class="form-group">
         <label for="status">Property Status:</label>
-        <select id="status" name="status" [(ngModel)]="property.status" required>
+        <select
+          id="status"
+          name="status"
+          [(ngModel)]="property.status"
+          required
+        >
           <option value="rent">For Rent</option>
           <option value="sale">For Sale</option>
         </select>
@@ -106,16 +166,29 @@
 
       <div class="form-group">
         <label for="areaGuides">Area Guides:</label>
-        <textarea id="areaGuides" name="areaGuides" [(ngModel)]="property.areaGuides"></textarea>
+        <textarea
+          id="areaGuides"
+          name="areaGuides"
+          [(ngModel)]="property.areaGuides"
+        ></textarea>
       </div>
 
       <div class="form-group">
         <label for="images">Images:</label>
-        <input id="images" name="images" type="file" (change)="onImagesChange($event)" multiple #addFile>
+        <input
+          id="images"
+          name="images"
+          type="file"
+          (change)="onImagesChange($event)"
+          multiple
+          #addFile
+        />
         <button type="button" (click)="ClickToAddFile()">Add File</button>
       </div>
 
-      <button type="submit">{{ isEditMode ? 'Update Property' : 'Save Property' }}</button>
+      <button type="submit">
+        {{ isEditMode ? "Update Property" : "Save Property" }}
+      </button>
     </form>
   </div>
 </div>

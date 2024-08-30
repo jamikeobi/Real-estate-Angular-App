@@ -7,21 +7,21 @@
         Our team of dedicated real estate professionals is here to help you find your dream home or investment property. Browse through our available agents below and get in touch with the one that suits your needs best.
       </p>
     </section>
-
-    <!-- Agent Search  Start-->
-    <app-agent-search></app-agent-search>
-    <!-- Agent Search  End-->
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search agents..." (input)="searchAgents()" class="search-input"/>
+    </div>
+    
 
   
     <!-- Agent Cards -->
-    <div class="agent-cards-container d-flex flex-wrap justify-content-start"  *ngFor="let agents of agentProfiles">
+    <div class="agent-cards-container d-flex flex-wrap justify-content-start"  *ngFor="let agents of filteredAgentProfiles">
       <!-- Agent Card 1 -->
       <div class="card agent-card">
-        <img src="https://via.placeholder.com/150" class="card-img-left" alt="Agent Image">
+        <img [src]="agents.image" class="card-img-left" alt="Agent Image">
         <div class="card-body">
           <h5 class="card-title">{{agents.name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{agents.company}}</h6>
-          <p class="card-text">{{agents.description}}</p>
+          <h6 class="card-subtitle mb-2 text-muted"><span style="color: black; font-weight: bold;">Agent Company</span> {{agents.company}}</h6>
+          <p class="card-text"><span style="color: black; font-weight: bold;">Agent Description</span> {{agents.description}}</p>
           <a [href]="'https://wa.me/' + agents.whatsappContact"class="button">Contact</a>
           <a href="#" class="button">View Profile</a>
         </div>

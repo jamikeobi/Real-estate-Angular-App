@@ -20,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './request/request.component';
 import { AvailableAgentsComponent } from './available-agents/available-agents.component';
 import { SearchComponent } from './search/search.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AgentSearchComponent } from './available-agents/agent-search/agent-search.component';
 import { SearchHistoryComponent } from './search-history/search-history.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
@@ -34,6 +34,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ModalComponent } from './profile-setting/modal/modal.component';
 import { AgentToListPropertyComponent } from './agent-to-list-property/agent-to-list-property.component';
+import { AuthService } from './Services/auth.service';
+import { LoadingInterceptorService } from './Services/loading-interceptor.service';
+import { FAQComponent } from './faq/faq.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsComponent } from './terms/terms.component';
 
 
 @NgModule({
@@ -61,7 +66,10 @@ import { AgentToListPropertyComponent } from './agent-to-list-property/agent-to-
     ChangePasswordComponent,
     UploadImageComponent,
     ModalComponent,
-    AgentToListPropertyComponent
+    AgentToListPropertyComponent,
+    FAQComponent,
+    PrivacyPolicyComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +84,7 @@ import { AgentToListPropertyComponent } from './agent-to-list-property/agent-to-
     MatInputModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [AuthService, {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

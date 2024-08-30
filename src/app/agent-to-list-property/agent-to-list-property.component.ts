@@ -40,14 +40,10 @@ export class AgentToListPropertyComponent {
     const agentId = this.authService.getLocalId(); // Replace with actual agent ID
     this.agentService.getPropertiesByAgent(agentId).subscribe(data => {
       this.properties = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-      this.hideLoader();
     },
     (error) => {
       console.error('Error fetching Agent listed properties:', error);
-      },
-       () => {
-      this.hideLoader(); // Hide loader on error as well
-    });
+      });
   }
 
   // Show the form to add a new property
@@ -65,9 +61,6 @@ export class AgentToListPropertyComponent {
     this.showForm = true;
     this.agentService.getProperty(propertyId).subscribe(data => {
       this.property = { id: propertyId, ...data };
-      this.hideLoader();
-    }, () => {
-      this.hideLoader(); // Hide loader on error as well
     });
   }
 
@@ -76,9 +69,6 @@ export class AgentToListPropertyComponent {
     this.showLoader();
     this.agentService.deleteProperty(propertyId).subscribe(() => {
       this.loadProperties();
-      this.hideLoader();
-    }, () => {
-      this.hideLoader(); // Hide loader on error as well
     });
   }
 
@@ -90,9 +80,6 @@ export class AgentToListPropertyComponent {
       this.agentService.updateProperty(this.property.id, this.property).subscribe(() => {
         this.loadProperties();
         this.showForm = false;
-        this.hideLoader();
-      }, () => {
-        this.hideLoader(); // Hide loader on error as well
       });
     } else {
       // Add a new property
@@ -104,12 +91,7 @@ export class AgentToListPropertyComponent {
           this.property = newProperty;
           this.loadProperties();
           this.showForm = false;
-          this.hideLoader();
-        }, () => {
-          this.hideLoader(); // Hide loader on error as well
         });
-      }, () => {
-        this.hideLoader(); // Hide loader on error as well
       });
     }
   }
@@ -158,13 +140,7 @@ export class AgentToListPropertyComponent {
     }
   }
 
-  // Hide loader
-  hideLoader(): void {
-    const loader = this.elementRef.nativeElement.querySelector('#globalLoader');
-    if (loader) {
-      loader.style.display = 'none';
-    }
-  }
+ 
   createProperty() {
     const agentId = 'some-agent-id'; // Get this from authentication or user context
 

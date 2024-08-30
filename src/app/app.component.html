@@ -1,4 +1,14 @@
 <div class="app-container">
+  <div *ngIf="isLoading | async" id="globalLoader">
+    <div class="backdrop">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+      <div class="loader-text">Loading, please wait...</div>
+    </div>
+  </div>
+  
     <app-header></app-header>
     <router-outlet></router-outlet>
     <footer class="footer"><app-footer></app-footer></footer>

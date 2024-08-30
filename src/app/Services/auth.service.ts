@@ -11,6 +11,7 @@ import {
   throwError,
 } from 'rxjs';
 import { AuthResponse } from '../Model/AuthResponse';
+import { User } from '../Model/userCheck';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,9 @@ import { AuthResponse } from '../Model/AuthResponse';
 export class AuthService {
   http: HttpClient = inject(HttpClient);
   user = new BehaviorSubject<UserDetails | null>(null); // Use UserDetails directly
+  newUser = new BehaviorSubject<User>(null)
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable();
 
   private apiKey = 'AIzaSyDv7OhuQuvuLNX2nR3EmcC5LxeoG_jRL0o';
   private signUPUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
@@ -36,8 +40,8 @@ export class AuthService {
           userDetails.id = authResponse.localId;
           return this.storeUserData(userDetails, authResponse.idToken);
         }),
-        tap(() => {
-          this.user.next(userDetails); // Notify subscribers about user details
+        tap((res) => {
+          this.handleCreateUser(res) // Notify subscribers about user details
         }),
         catchError(this.handleError)
       );
@@ -46,8 +50,17 @@ export class AuthService {
   // Store user data after successful registration
   storeUserData(userDetails: UserDetails, token: string): Observable<any> {
     const url = `${this.dataBaseUrl}/${userDetails.id}.json?auth=${token}`;
-    return this.http.post(url, userDetails);
+    console.log('Storing user data at URL:', url);
+    console.log('User Details:', userDetails);
+    return this.http.post(url, userDetails).pipe(
+      tap((response) => console.log('Data stored successfully:', response)),
+      catchError((error) => {
+        console.error('Error storing data:', error);
+        return throwError(() => new Error('Failed to store user data'));
+      })
+    );
   }
+  
 
   // Log in function
   logIn(email: string, password: string): Observable<UserDetails> {
@@ -63,14 +76,22 @@ export class AuthService {
           // Store the user details in the service state
           this.storeAuthResponse(authResponse);
           return this.getUserData(+authResponse.localId, authResponse.idToken);
+          
         }),
-        tap((userDetails) => {
-          this.handleCreateUser(userDetails); // Notify subscribers about user details
+        tap((res) => {
+          this.handleCreateUser(res); // Notify subscribers about user details
         }),
         catchError(this.handleError)
       );
   }
-  
+  private handleCreateUser(res){
+    const expiresInTS = new Date().getTime() + +res.expiresIn * 1000;
+    const expiresIn = new Date(expiresInTS);
+    const user  = new User(res.email, res.localId, res.idToken, expiresIn);
+    this.newUser.next(user);
+    console.log(user);
+    
+  }
   // Store the auth response for later use
   private storeAuthResponse(authResponse: AuthResponse) {
     localStorage.setItem('authResponse', JSON.stringify(authResponse)); // Store in local storage
@@ -86,14 +107,11 @@ export class AuthService {
 isAgent(): boolean {
   return this.user.value?.role === 'agent';
 }
-  private handleCreateUser(userDetails: UserDetails) {
-    this.user.next(userDetails);
-    // console.log(userDetails);
-  }
+
 
   // Fetch user data from Firebase
   getUserData(userId: number, token: string): Observable<UserDetails> {
-    const url = `${this.dataBaseUrl}/${userId}.json?auth=${token}`;
+    const url = 'https://real-estate-angular-project-default-rtdb.firebaseio.com/registers.json';
     console.log('Fetching user data from URL:', url); // Debugging
     return this.http.get<UserDetails>(url);
   }
@@ -141,5 +159,11 @@ getCurrentUser(): Observable<{ agentId: string } | null> {
   const mockUser = { agentId: this.getLocalId() };  // Mock data
   return of(mockUser);
 }
+show() {
+  this.loadingSubject.next(true);
+}
 
+hide() {
+  this.loadingSubject.next(false);
+}
 }

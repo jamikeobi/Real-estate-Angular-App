@@ -17,6 +17,9 @@ import { AvailableAgentsComponent } from './available-agents/available-agents.co
 import { SearchHistoryComponent } from './search-history/search-history.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { AgentToListPropertyComponent } from './agent-to-list-property/agent-to-list-property.component';
+import { FAQComponent } from './faq/faq.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsComponent } from './terms/terms.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,7 +29,7 @@ const routes: Routes = [
   {path: 'buyer-profile', component: BuyerProfileComponent},
   {path: 'agent-dashboard', component: AgentDashboardComponent},
   {path: 'properties', component: PropertyListComponent},
-  {path: 'properties/id', component: PropertyDetailsComponent},
+  {path: 'propertiesDetails/id', component: PropertyDetailsComponent},
   {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard]},
   {path: 'enquiries', component: EnquiryListComponent, canActivate: [AuthGuard]},
   {path: 'favorite', component: FavouriteListComponent},
@@ -36,6 +39,9 @@ const routes: Routes = [
   {path: 'searchHistory', component: SearchHistoryComponent},
   {path: 'profile-setting', component: ProfileSettingComponent},
   {path: 'AgentToListProperty', component: AgentToListPropertyComponent},
+  {path: 'faq', component: FAQComponent},
+  {path: 'terms', component: TermsComponent},
+  {path: 'privacyPolicy', component: PrivacyPolicyComponent},
   {path: '', redirectTo: '/properties', pathMatch: 'full'}
 ];
 
